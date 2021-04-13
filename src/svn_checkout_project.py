@@ -9,7 +9,11 @@ def search_svn():
     project_lst = []
     find_lst = []
 
-    # Check all Projects in the SVN {path}
+    #Check if the folder {work_path} exist if not create
+    if not os.path.exists(work_path):
+        os.makedirs(work_path)
+
+    #Check all Projects in the SVN {path}
     status = subprocess.run(f'svn list "{path}"', stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
     
     #Append all Projects to the list 
