@@ -1,12 +1,15 @@
 #!/usr/bin/env python3.9
-import subprocess, os
+import subprocess, os, sys
+import shutil
 import datetime
+import time
 import getpass
 
 def main():
     
     repo_path = 'file:///C:/Users/chris/Documents/testrepo/Projekte'
-    work_path = r'C:\Users\chris\Desktop\Projekte'
+    work_path = 'C:/Users/chris/Desktop/Projekte'
+    template = os.path.abspath("./src/template")
 
     #Check if the folder {work_path} exist if not create
     if not os.path.exists(work_path):
@@ -30,6 +33,10 @@ def main():
 
     os.system(f'svn checkout "{new_project}" "{work_path}"')
 
-
-if __name__ == '__main__':
+    if os.path.exists(template):
+        shutil.copytree(template, work_path, dirs_exist_ok=True)
+        time.sleep(1)
+        os.system(f'svn add "{work_path}" --force')
+        
+if __name__ == '__main__':    
     main()
