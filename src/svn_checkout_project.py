@@ -2,7 +2,7 @@
 import subprocess
 import os
 
-def search_svn():
+def main():
     
     path = 'file:///C:/Users/chris/Documents/testrepo/Projekte'
     work_path = r'C:\Users\chris\Desktop\Projekte'
@@ -74,4 +74,4 @@ def search_svn():
             break
 
 if __name__ == '__main__':
-    search_svn()
+    main()
