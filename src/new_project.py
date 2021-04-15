@@ -7,8 +7,8 @@ import getpass
 
 def main():
     
-    repo_path = 'file:///C:/Users/chris/Documents/testrepo/Projekte'
-    work_path = 'C:/Users/chris/Desktop/Projekte'
+    repo_path = r'file:///B:/020_Department/A-tech/AWT/Daten Mitarbeiter/Brandau, Christoph/_Projekte/V_Projekte'
+    work_path = 'D:/SVN/V-Projekte'
     template = os.path.abspath("./src/template")
 
     #Check if the folder {work_path} exist if not create
@@ -26,17 +26,17 @@ def main():
     projname = 'VT_' + vnum + '_' + custname.replace(' ', '_')
     work_path = work_path + '/' + projname
     new_project = repo_path + '/' + projname
-    comment = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
+    comment = 'Auto' #str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
     comment = f'{comment} created by {getpass.getuser()}'
-    
-    os.system(f'svn mkdir {new_project} -m "{comment}"')
+    print(new_project)
+    os.system(f'svn mkdir "{new_project}" -m "{comment}"')
 
     os.system(f'svn checkout "{new_project}" "{work_path}"')
-
+    
     if os.path.exists(template):
         shutil.copytree(template, work_path, dirs_exist_ok=True)
         time.sleep(1)
         os.system(f'svn add "{work_path}" --force')
-        
+     
 if __name__ == '__main__':    
     main()
