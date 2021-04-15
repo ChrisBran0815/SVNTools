@@ -26,7 +26,7 @@ def main():
     projname = 'VT_' + vnum + '_' + custname.replace(' ', '_')
     work_path = work_path + '/' + projname
     new_project = repo_path + '/' + projname
-    comment = 'Auto' #str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
+    comment = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
     comment = f'{comment} created by {getpass.getuser()}'
     print(new_project)
     os.system(f'svn mkdir "{new_project}" -m "{comment}"')
