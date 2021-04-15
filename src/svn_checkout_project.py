@@ -4,8 +4,8 @@ import os
 
 def main():
     
-    path = 'file:///C:/Users/chris/Documents/testrepo/Projekte'
-    work_path = r'C:\Users\chris\Desktop\Projekte'
+    path = 'file:///B:/020_Department/A-tech/AWT/Daten Mitarbeiter/Brandau, Christoph/_Projekte/V_Projekte'
+    work_path = 'D:/SVN/V-Projekte'
     project_lst = []
     find_lst = []
 
