@@ -1,7 +1,6 @@
 #!/usr/bin/env python3.9
 import os
 
-
 repo_path = 'file:///B:/020_Department/A-tech/AWT/Daten Mitarbeiter/Brandau, Christoph/_Projekte/V_Projekte'
 import_path = r'C:\Users\brandauc\Desktop\New folder\new'
 comment = 'Auto Import'
