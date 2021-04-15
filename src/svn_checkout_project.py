@@ -39,6 +39,7 @@ def main():
             print(f'{str(i)}. {str(content).replace("/","")}')
     else:
         print('No Project found. Please Create one!')
+        os.system('pause')
         return
     
     #Choose the project which should be checked out if more then 1 result was found
