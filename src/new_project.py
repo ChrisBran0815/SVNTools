@@ -7,7 +7,7 @@ import getpass
 
 def main():
     
-    repo_path = r'file:///B:/020_Department/A-tech/AWT/Daten Mitarbeiter/Brandau, Christoph/_Projekte/V_Projekte'
+    repo_path = r'https://svn.app.dmgmori.com/svn/DM-SH-AWT/V-Projects'
     work_path = 'D:/SVN/V-Projekte'
     template = os.path.abspath("./src/template")
 
@@ -18,7 +18,8 @@ def main():
     while True:
         vnum = input('Enter the V-Number: ')
         if not vnum == '':
-            break
+            if len(vnum) == 11:
+                break
     while True:
         custname = input('Enter the Customer Name: ')
         if not custname == '':
