@@ -1,8 +1,8 @@
 #!/usr/bin/env python3.9
 import os
 
-repo_path = 'file:///B:/020_Department/A-tech/AWT/Daten Mitarbeiter/Brandau, Christoph/_Projekte/V_Projekte'
-import_path = r'C:\Users\brandauc\Desktop\New folder\new'
+repo_path = 'https://svn.app.dmgmori.com/svn/DM-SH-AWT/V-Projects'
+import_path = r'C:\Users\brandauc\Desktop\test'
 comment = 'Auto Import'
 for i in os.listdir(import_path):
     print(i)    
