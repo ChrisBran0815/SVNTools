@@ -4,7 +4,7 @@ import os
 
 def main():
     
-    path = 'file:///B:/020_Department/A-tech/AWT/Daten Mitarbeiter/Brandau, Christoph/_Projekte/V_Projekte'
+    path = 'https://svn.app.dmgmori.com/svn/DM-SH-AWT/V-Projects'
     work_path = 'D:/SVN/V-Projekte'
     project_lst = []
     find_lst = []
