@@ -9,7 +9,7 @@ def main():
     
     repo_path = r'https://svn.app.dmgmori.com/svn/DM-SH-AWT/V-Projects'
     work_path = 'D:/SVN/V-Projekte'
-    template = os.path.abspath("./src/template")
+    template = os.path.abspath("./template")
 
     #Check if the folder {work_path} exist if not create
     if not os.path.exists(work_path):
