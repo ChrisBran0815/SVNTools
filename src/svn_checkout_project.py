@@ -53,7 +53,7 @@ def main():
                 checkout_num = int(checkout_num)
                 if checkout_num <= len(find_lst):
                     if type(checkout_num) == int:
-                        checkout_path = path + '/' + find_lst[checkout_num-1] #os.path.join(path, find_lst[int(checkout_num)-1])
+                        checkout_path = path + '/' + find_lst[checkout_num-1] + '/trunk' #os.path.join(path, find_lst[int(checkout_num)-1])
                         break
                 else:
                     print('Please enter a right Number!')
