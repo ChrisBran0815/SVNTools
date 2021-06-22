@@ -32,7 +32,7 @@ def main():
     comment = f'{comment} created by {getpass.getuser()}'
     print(new_project)
     os.system(f'svn mkdir "{new_project}" -m "{comment}"')
-    os.system(f'svn import "{template}" "{new_project}" -m "Test"')
+    os.system(f'svn import "{template}" "{new_project}" -m "Create Folder Structure"')
     os.system(f'svn checkout "{checkout}" "{work_path}"')
     
 if __name__ == '__main__':    
