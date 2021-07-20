@@ -9,7 +9,7 @@ def main():
     
     repo_path = r'https://svn.app.dmgmori.com/svn/DM-SH-AWT/V-Projects'
     work_path = 'D:/SVN/V-Projekte'
-    template = os.path.abspath("./template")
+    template = os.path.abspath("./template/")
 
     #Check if the folder {work_path} exist if not create
     if not os.path.exists(work_path):
@@ -27,17 +27,13 @@ def main():
     projname = 'VT_' + vnum + '_' + custname.replace(' ', '_')
     work_path = work_path + '/' + projname
     new_project = repo_path + '/' + projname
+    checkout = new_project + '/trunk'
     comment = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M'))
     comment = f'{comment} created by {getpass.getuser()}'
     print(new_project)
     os.system(f'svn mkdir "{new_project}" -m "{comment}"')
-
-    os.system(f'svn checkout "{new_project}" "{work_path}"')
+    os.system(f'svn import "{template}" "{new_project}" -m "Create Folder Structure"')
+    os.system(f'svn checkout "{checkout}" "{work_path}"')
     
-    if os.path.exists(template):
-        shutil.copytree(template, work_path, dirs_exist_ok=True)
-        time.sleep(1)
-        os.system(f'svn add "{work_path}" --force')
-     
 if __name__ == '__main__':    
     main()

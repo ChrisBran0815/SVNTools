@@ -22,25 +22,28 @@ def main():
     
     #Enter String to search the project
     while True:
-        os.system('cls')
-        search = input('Enter Projekt: ')
-        if search != '': break
-    
-    #Append all all projects which contain the {search} string to the list
-    for i in project_lst:
-        if search in i:
-            find_lst.append(i)
-    
-    #Print all projects t console which contain the {search} string
-    if len(find_lst) > 0:
-        i = 0
-        for content in find_lst:
-            i += 1
-            print(f'{str(i)}. {str(content).replace("/","")}')
-    else:
-        print('No Project found. Please Create one!')
-        os.system('pause')
-        return
+        while True:
+            os.system('cls')
+            search = input('Enter Projekt: ')
+            if search != '': break
+        
+        #Append all all projects which contain the {search} string to the list
+        for i in project_lst:
+            if search in i:
+                find_lst.append(i)
+        
+        #Print all projects t console which contain the {search} string
+        
+        if len(find_lst) > 0:
+            i = 0
+            for content in find_lst:
+                i += 1
+                print(f'{str(i)}. {str(content).replace("/","")}')
+            break
+        else:
+            print('No Project found. Please Create one!')
+            os.system('pause')
+            continue
     
     #Choose the project which should be checked out if more then 1 result was found
     if len(find_lst) > 1:
@@ -50,7 +53,7 @@ def main():
                 checkout_num = int(checkout_num)
                 if checkout_num <= len(find_lst):
                     if type(checkout_num) == int:
-                        checkout_path = path + '/' + find_lst[checkout_num-1] #os.path.join(path, find_lst[int(checkout_num)-1])
+                        checkout_path = path + '/' + find_lst[checkout_num-1] + '/trunk' #os.path.join(path, find_lst[int(checkout_num)-1])
                         break
                 else:
                     print('Please enter a right Number!')
@@ -61,7 +64,7 @@ def main():
                 continue
     else:
         checkout_num = 1
-        checkout_path = path + '/' + find_lst[checkout_num-1]
+        checkout_path = path + '/' + find_lst[checkout_num-1] + '/trunk'
 
     #Ask if you want check out the Project
     while True:
