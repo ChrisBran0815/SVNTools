@@ -2,6 +2,24 @@ import os
 import subprocess
 import platform
 
+def add(item):
+    cmd = ' '.join([f'svn add "{item}" --force'])
+    subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    pass
+
+def commit(item, msg):
+    cmd = ' '.join([f'svn ci {item} -m "{msg}"'])
+    subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    pass
+
+def remove(item, msg=''):
+    if msg == '':
+        cmd = ' '.join(f'svn rm {item}')
+        subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+    else:
+        cmd = ' '.join([f'svn rm {item} -m "{msg}"'])
+        print(subprocess.run(cmd))
+    pass
 
 def main():
     if platform.system() == 'Linux':
@@ -10,35 +28,23 @@ def main():
         path =r'D:\SVN\V-Projekte'
 
     for wk in os.listdir(path):
-        wk = os.path.join(path, f'"{wk}"')
+        wk = os.path.join(path, wk)
         cmd = " ".join(['svn st', wk])
         output = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         for status in output.stdout.splitlines():
-            if status[:1] == '!':
-                cmd = ' '.join(['svn rm', f'"{status[8:]}"'])
-                print(subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True))
-                print(status[8:])
-            #status = status[1:]
-            
             print(status)
-
-   # !M      D:\SVN\V-Projekte\VT_20210816-13_Warema\02_CAM\01_Setup\519378_ke031610051_165-setup_1  Copy.prt    
-   # A       D:\SVN\V-Projekte\VT_20210816-13_Warema\02_CAM\01_Setup\519378_ke031610051_165-setup_1.prt
+            if status[:1] == '!':
+                remove(item=status[8:])
+            elif status[:1] == 'A':
+                continue
+            elif status[:1] == '?':
+                add(status[8:])
+            elif status[:1] == 'D':
+                continue               
+    msg = f'--> auto commit Proj. {os.path.basename(wk)}'
+    commit(item=wk, msg=msg)
     return
-    i = 0
-    while i == 0:
-        print('HELLO')
-        cmd = " ".join(['svn status', path])
-        list = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE ,universal_newlines=True)
-        print(list.stdout.splitlines())
-        for content in list.stdout.splitlines():
-            if "!" in content:
-                print('yes')
-                cmd=' '.join(['svn rm', content[1:]])
-                test = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE ,universal_newlines=True)
-                print(test.stdout.splitlines())
-        i += 1
-    
+   
 if __name__ == '__main__':
     main()
     
