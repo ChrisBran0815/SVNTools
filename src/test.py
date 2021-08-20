@@ -27,9 +27,9 @@ def main():
     elif platform.system() == 'Windows':
         path =r'D:\SVN\V-Projekte'
 
-    for wk in os.listdir(path):
-        wk = os.path.join(path, wk)
-        cmd = " ".join(['svn st', wk])
+    for wc in os.listdir(path):
+        wc = os.path.join(path, wc)
+        cmd = " ".join(['svn st', wc])
         output = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         for status in output.stdout.splitlines():
             print(status)
@@ -42,7 +42,7 @@ def main():
             elif status[:1] == 'D':
                 continue               
     msg = f'--> auto commit Proj. {os.path.basename(wk)}'
-    commit(item=wk, msg=msg)
+    commit(item=wc, msg=msg)
     return
    
 if __name__ == '__main__':
