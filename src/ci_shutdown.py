@@ -28,14 +28,15 @@ def main():
         wc = os.path.join(path, wc)
         cmd = " ".join(['svn st', wc])
         output = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-        for status in output.stdout.splitlines():            
+        for status in output.stdout.splitlines():   
+            item = status[8:]         
             if status[:1] == '!':
-                remove(item=status[8:])
+                remove(item=item)
                 continue
             elif status[:1] == 'A':
                 continue
             elif status[:1] == '?':
-                add(status[8:])
+                add(item=item)
                 continue
             elif status[:1] == 'D':
                 continue   
