@@ -2,6 +2,7 @@ import os
 import subprocess
 import platform
 import time
+import zipapp
 
 def add(item):
     cmd = ' '.join([f'svn add "{item}" --force'])
@@ -17,7 +18,7 @@ def remove(item):
     cmd = ' '.join(f'svn rm {item}')
     subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)    
 
-def main():
+def svn_func():
 
     if platform.system() == 'Linux':
         path = '/home/christoph/Dokumente/test/trunk'
@@ -47,16 +48,19 @@ def main():
         msg = f'--> auto commit Proj. {os.path.basename(wc)}'
         commit(item=wc, msg=msg)
     return
-   
-if __name__ == '__main__':
+def main():
     while True:
         user_input = input('You want Shutdown (s) or Restart (r) your System? (s/r)')
         if user_input in ['R', 'r', 'S', 's']: break
-
-    main()
-    time.sleep(5)
+        svn_func()
+        time.sleep(5)
     if user_input in ['s', 'S']:
         os.system('shutdown.exe /s /t 00')
     elif user_input in ['r', 'R']:
         os.system('shutdown.exe /r /t 00')
+
+if __name__ == '__main__':    
+    main()
+
+    
     
